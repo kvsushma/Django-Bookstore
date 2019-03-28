@@ -4,14 +4,20 @@
 
 {% load bootstrap3 %}
 
+{% load bootstrap_themes %}
+
+{% load compress %}         
+
 {# bootstrap_styles theme='simplex' type='min.css' % #} 
 
-{% load bootstrap_themes %}
 
 {% block bootstrap3_extra_head %}
      <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
+   {% compress css %}
    <link href="{% static 'base/css/style.css' %}" rel="stylesheet" type="text/css">
-{% endblock %}
+   {% endcompress%}
+{% endblock %}    
+
 
 {% block bootstrap3_title %}
      {% block title %}
