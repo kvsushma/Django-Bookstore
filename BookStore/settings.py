@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social.apps.django_app.default',
     'registration',
     'store',
 )
@@ -65,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -72,6 +75,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'BookStore.wsgi.application'
 
+AUTHENTICATION_BACKENDS = ( 
+      'social.backends.facebook.FacebookOAuth2',
+      'django.contrib.auth.backends.ModelBackend' )
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -107,7 +113,12 @@ STATIC_URL = '/static/'
 
 ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUT_LOGIN = True
-LOGIN_REDIRECT_URL = '/store/'   
+
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = '/store/'
+
+#LOGIN_REDIRECT_URL = '/login/'
 #Email Settings
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -117,3 +128,8 @@ EMAIL_HOST_PASSWORD='kasavarjula'
 EMAIL_PORT=587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'books@mystery.com'
+
+#social auth - facebook
+
+SOCIAL_AUTH_FACEBOOK_KEY='1062700987247305'
+SOCIAL_AUTH_FACEBOOK_SECRET='db0a148fc44ce2ec7a095282378f665c' 
