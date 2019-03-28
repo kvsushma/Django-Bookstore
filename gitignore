@@ -190,3 +190,6 @@ fabric.properties
 
 #sqlite Database
 *.sqlite3
+
+# Compiled static assets
+static
